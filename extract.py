@@ -6,5 +6,5 @@ import format
 file = open("./data/500.bsob", "rb")
 
 print "ret =",
-format.object(bsob.parse(file))
-format.object(bsob.parse(file))
+format.object(bsob.parse(file,0))
+format.object(bsob.parse(file,1))

@@ -2,6 +2,7 @@
 
 import struct
 import decode
+import strings
 
 attributes = [
 "can turn", "can be engaged", "has direction goal", "is remote",
@@ -28,29 +29,29 @@ buildFlags = [
 orderFlags = [
 "stronger than target", "target is base", "target is not base", "target is local",
 "target is remote", "only escort not base", "target is friend", "target is foe",
-"", "", "", "", 
-"", "", "", "", 
-"", "", "hard matching friend", "hard matching foe", 
-"hard friendly escort only", "hard no friendly escort", "hard target is remote", "hard target is local", 
-"hard target is foe", "hard target is friend", "hard target is not base", "hard target is base", 
-"order key 1", "order key 2", "order key 3", "order key 4", 
+"", "", "", "",
+"", "", "", "",
+"", "", "hard matching friend", "hard matching foe",
+"hard friendly escort only", "hard no friendly escort", "hard target is remote", "hard target is local",
+"hard target is foe", "hard target is friend", "hard target is not base", "hard target is base",
+"order key 1", "order key 2", "order key 3", "order key 4",
 		]
 
 deviceUses = [
-"transportation", "attacking", "defence", "", 
-"", "", "", "", 
-"", "", "", "", 
-"", "", "", "", 
-"", "", "", "", 
-"", "", "", "", 
-"", "", "", "", 
-"", "", "", "", 
+"transportation", "attacking", "defence", "",
+"", "", "", "",
+"", "", "", "",
+"", "", "", "",
+"", "", "", "",
+"", "", "", "",
+"", "", "", "",
+"", "", "", "",
 ]
 
 length = 318
 format = ">Iiii ii iiI ii ii iii ii i hhiBx ii iii iii 6i6i6i iii i 12i 32s II iI BBBB h 10x"
 
-def parse(file):
+def parse(file, id = None):
 	data = file.read(length)
 	values = struct.unpack(format, data)
 
@@ -216,7 +217,7 @@ def parse(file):
 	else: #device
 		frame = struct.unpack(">Iiiiiii 4x", values[65])
 		object["device"] = {
-		 	"uses": decode.bitfield(frame[0], deviceUses),
+			"uses": decode.bitfield(frame[0], deviceUses),
 			"energy cost": frame[1],
 			"reload": frame[2],
 			"ammo": frame[3],
@@ -236,5 +237,11 @@ def parse(file):
 	object["skill den adj"] = values[73]
 	
 	object["portrait id"] = values[74]
+	
+	if id != None:
+		object["name"] = strings.get(5000, id)
+		object["short name"] = strings.get(5001, id)
+		object["notes"] = strings.get(5002, id)
+		object["static name"] = strings.get(5003, id)
 	return object
 

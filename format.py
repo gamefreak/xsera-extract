@@ -29,5 +29,9 @@ def object(obj, level = 0):
 			print str(val) + ";"
 		elif type(val) == bool:
 			print str(val).lower()+";"
+		elif type(val) == str:
+			print '"' + str(val) + '";'
+		else:
+			print "nil;"
 	level -= 1
 	print "\t" * level + "};"
