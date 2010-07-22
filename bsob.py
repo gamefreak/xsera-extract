@@ -129,7 +129,8 @@ def parse(file):
 	object["actions"] = {
 			"destroy": {
 				"id": values[53],
-				"count": values[54],
+				"count": values[54] & 0x7fffffff,
+				"dont die on death": bool(values[54] & 0x80000000),
 				},
 			"expire": {
 				"id": values[55],
@@ -145,7 +146,9 @@ def parse(file):
 				},
 			"activate": {
 				"id": values[61],
-				"count": values[62],
+				"count": values[62] & 0x0000ffff,
+				"interval": (values[62] & 0xff000000) >> 24,
+				"interval range": (values[62] & 0x00ff0000) >> 16,
 				},
 			"arrive": {
 				"id": values[63],
