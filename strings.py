@@ -6,12 +6,12 @@ from glob import glob
 db = {}
 
 def readStrings(fromFile):
-	strings = []
+	strings = {}
 	count = unpack(">h", fromFile.read(2))[0]
 	for i in range(1, count):
 		len = unpack("B", fromFile.read(1))[0]
 		s = unpack(str(len) + "s", fromFile.read(len))[0]
-		strings.append(s)
+		strings[i] = s
 	return strings
 
 def get(file, id = None):
