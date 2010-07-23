@@ -11,7 +11,13 @@ def line(depth, key, value):
 def object(obj, level = 0):
 	print "{"
 	level += 1
-	for key, val in obj.iteritems():
+	
+	if type(obj) == dict:
+		iter = obj.iteritems()
+	else:
+		iter = enumerate(obj)
+	
+	for key, val in iter:
 		if type(key) == str:
 			key = "".join(key.title().split(" "))
 			key = key[0].lower() + key[1:]
@@ -31,6 +37,8 @@ def object(obj, level = 0):
 			print str(val).lower()+";"
 		elif type(val) == str:
 			print '"' + str(val) + '";'
+		elif type(val) == list:
+			object(val, level)
 		else:
 			print "nil;"
 	level -= 1

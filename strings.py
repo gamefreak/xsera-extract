@@ -20,6 +20,8 @@ def get(file, id = None):
 		text = fd.read()
 		fd.close()
 		return text
+	elif id is True:
+		return db[str(file)]
 	else:
 		return db[str(file)][id]
 
