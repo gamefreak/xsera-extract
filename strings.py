@@ -14,8 +14,14 @@ def readStrings(fromFile):
 		strings.append(s)
 	return strings
 
-def get(file, id):
-	return db[str(file)][id]
+def get(file, id = None):
+	if id == None:
+		fd = open("./data/TEXT/r."+str(file))
+		text = fd.read()
+		fd.close()
+		return text
+	else:
+		return db[str(file)][id]
 
 for fileName in glob("./data/STR#/r.*"):
 	num = fileName.split('.')[-1]
