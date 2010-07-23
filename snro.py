@@ -6,7 +6,7 @@ import decode
 
 size = 124
 
-format = "> hh 4h4xih2x 4h4xih2x 4h4xih2x 4h4xih2x 15h 10x"
+format = "> hh 4h4xih2x 4h4xih2x 4h4xih2x 4h4xih2x 11h bb 4h ihh"
 
 def parse(file, id = None):
 	data = file.read(size)
@@ -55,19 +55,28 @@ def parse(file, id = None):
 			"x": values[36],
 			}
 
+	object["angle"] = values[37]
+
 	object["briefing"] = {
 			"first": values[35],
-			"count": values[37],
+			"count": values[38],
 			}
 
 	object["par"] = {
-			"time": values[38],
-			"kills": values[40],
+			"time": values[39],
+			"kills": values[41],
+			"ratio": decode.fixed(values[43]),
+			"losses": values[44],
 			}
 
-	if values[39] > -1:
-		object["movie"] = strings.get(4500, values[39]-1)
+	if values[40] > -1:
+		object["movie"] = strings.get(4500, values[40]-1)
 	else:
 		object["movie"] = None
-	#object["name"] = strings.get(4600, values[41]-1)
+
+	object["id"] = values[42]
+	object["name"] = strings.get(4600, values[42])
+
+	object["start time"] = 0x7fff & values[43]
+	object["is training"] = (0x8000 & values[43]) == True
 	return object
