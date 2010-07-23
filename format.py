@@ -2,12 +2,6 @@
 
 import sys
 
-def write(*arguments):
-	for arg in arguments: sys.stdout.write(str(arg))
-
-def line(depth, key, value):
-	pass
-
 def object(obj, level = 0):
 	print "{"
 	level += 1
