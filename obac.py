@@ -43,8 +43,31 @@ def parse(file, id = None):
 		object["sound id"] = sub[5]
 		object["sound range"] = sub[6]
 	elif type == 3:
-#alter
-		pass
+		alterTypes = [
+				"damage",
+				"velocity",
+				"current thrust",
+				"thrust",
+				"max velocity",
+				"turn rate",
+				"location",
+				"scale",
+				"pulse weapon",
+				"beam weapon",
+				"special weapon",
+				"energy",
+				"owner",
+				"hidden",
+				"cloak",
+				"offline",
+				"current turn rate",
+				"base type",
+				"active condition",
+				"occupation",
+				"absolute cash",
+				"age",
+				"absolute location",
+				]
 	elif type == 4:
 		object["type"] = "make sparks"
 		sub = unpack(">ii i B 11x", values[8])
