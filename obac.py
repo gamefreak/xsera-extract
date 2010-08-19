@@ -43,31 +43,53 @@ def parse(file, id = None):
 		object["sound id"] = sub[5]
 		object["sound range"] = sub[6]
 	elif type == 3:
-		alterTypes = [
-				"damage",
-				"velocity",
-				"current thrust",
-				"thrust",
-				"max velocity",
-				"turn rate",
-				"location",
-				"scale",
-				"pulse weapon",
-				"beam weapon",
-				"special weapon",
-				"energy",
-				"owner",
-				"hidden",
-				"cloak",
-				"offline",
-				"current turn rate",
-				"base type",
-				"active condition",
-				"occupation",
-				"absolute cash",
-				"age",
-				"absolute location",
-				]
+		stype, relative, min, range = unpack("> B?ii 14x", values[8])
+		if stype == 0:
+			"damage",
+		elif stype == 1:
+			"velocity",
+		elif stype == 2:
+			"current thrust",
+		elif stype == 3:
+			"thrust",
+		elif stype == 4:
+			"max velocity",
+		elif stype == 5:
+			"turn rate",
+		elif stype == 6:
+			"location",
+		elif stype == 7:
+			"scale",
+		elif stype == 8:
+			"pulse weapon",
+		elif stype == 9:
+			"beam weapon",
+		elif stype == 10:
+			"special weapon",
+		elif stype == 11:
+			"energy",
+		elif stype == 12:
+			"owner",
+		elif stype == 13:
+			"hidden",
+		elif stype == 14:
+			"cloak",
+		elif stype == 15:
+			"offline",
+		elif stype == 16:
+			"current turn rate",
+		elif stype == 17:
+			"base type",
+		elif stype == 18:
+			"active condition",
+		elif stype == 19:
+			"occupation",
+		elif stype == 20:
+			"absolute cash",
+		elif stype == 21:
+			"age",
+		elif stype == 22:
+			"absolute location",
 	elif type == 4:
 		object["type"] = "make sparks"
 		sub = unpack(">ii i B 11x", values[8])
