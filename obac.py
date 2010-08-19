@@ -45,19 +45,32 @@ def parse(file, id = None):
 	elif type == 3:
 		stype, relative, min, range = unpack("> B?ii 14x", values[8])
 		if stype == 0:
-			"damage",
+			object["type"] = "alter health"
+			object["amount"] = min
 		elif stype == 1:
-			"velocity",
+			object["type"] = "alter velocity"
+			object["relative"] = relative
+			object["minimum"] = min
+			object["range"] = range
 		elif stype == 2:
-			"current thrust",
+			object["type"] = "alter thrust"
+			object["relative"] = relative
+			object["minimum"] = min
+			object["range"] = range
 		elif stype == 3:
-			"thrust",
+			object["type"] = "alter max thrust"
+			object["value"] = min
 		elif stype == 4:
-			"max velocity",
+			object["type"] = "alter max velocity"
+			object["value"] = min
 		elif stype == 5:
-			"turn rate",
+			object["type"] = "alter max turn rate"
+			object["value"] = min
 		elif stype == 6:
-			"location",
+			object{"type"] = "alter location"
+			object["relative"] = relative
+			object["minimum"] = min
+			object["range"] = range
 		elif stype == 7:
 			"scale",
 		elif stype == 8:
