@@ -23,8 +23,11 @@ def parse(file, id = None):
 	type = values[0]
 	if type == 0:
 		object["type"] = "none"
-	elif type == 1:
-		object["type"] = "create object"
+	elif type == 1 or type == 17:
+		if type == 17:
+			object["type"] = "create object set destination"
+		else:
+			object["type"] = "create object"
 		sub = unpack(">iii??i 6x", values[8])
 		object["base type"] = sub[0]
 		object["min"] = sub[1]
@@ -178,13 +181,13 @@ def parse(file, id = None):
 		elif sub == 2:
 			object["how"] = "destroy"
 	elif type == 12:
-		pass
+		object["type"] = "set destination"
 	elif type == 13:
-		pass
+		object["type"] = "activate special"
 	elif type == 14:
-		pass
+		object["type"] = "activate pulse"
 	elif type == 15:
-		pass
+		object["type"] = "activate beam"
 	elif type == 16:
 		object["type"] = "color flash"
 		sub = unpack("> i BB 18x", values[8])
@@ -192,21 +195,29 @@ def parse(file, id = None):
 		object["color"] = sub[1]
 		object["shade"] = sub[2]
 	elif type == 17:
+		#see action #1 (create object action)
 		pass
 	elif type == 18:
-		pass
+		object["type"] = "nil target"
 	elif type == 19:
-		pass
+		object["type"] = "disable keys"
+		sub = unpack("> I 18x", values[8])
+		object["key mask"] = sub[0]
 	elif type == 20:
-		pass
+		object["type"] = "enable keys"
+		sub = unpack("> I 18x", values[8])
+		object["key mask"] = sub[0]
 	elif type == 21:
-		pass
+		object["type"] = "set zoom level"
+		sub = unpack("> i 18x", values[8])
+		object["value"] = sub[0]
 	elif type == 22:
 		object["type"] = "computer select"
 		sub = unpack("> ii 16x", values[8])
 		object["screen"] = sub[0]
 		object["line"] = sub[1]
 	elif type == 23:
-		pass
-
+		object["type"] = "assume initial object"
+		sub = unpack("> i 18x", values[8])
+		object["id"] = sub[0]
 	return object
