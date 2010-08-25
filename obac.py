@@ -67,42 +67,71 @@ def parse(file, id = None):
 			object["type"] = "alter max turn rate"
 			object["value"] = min
 		elif stype == 6:
-			object{"type"] = "alter location"
+			object["type"] = "alter location"
 			object["relative"] = relative
 			object["minimum"] = min
 			object["range"] = range
 		elif stype == 7:
-			"scale",
+#I don't think this is used in the scenario so I can't really test it
+			object["type"] = "alter scale"
+			object["value"] = min
 		elif stype == 8:
-			"pulse weapon",
+			object["type"] = "alter pulse weapon"
+			object["id"] = min
 		elif stype == 9:
-			"beam weapon",
+			object["type"] = "alter beam weapon"
+			object["id"] = min
 		elif stype == 10:
-			"special weapon",
+			object["type"] = "alter special weapon"
+			object["id"] = min
 		elif stype == 11:
-			"energy",
+			object["type"] = "alter energy"
+			object["value"] = min
 		elif stype == 12:
-			"owner",
+			object["type"] = "alter owner"
+			object["use objects owner"] = relative
+			object["value"] = min
 		elif stype == 13:
-			"hidden",
+			object["type"] = "alter hidden"
+			object["minimum"] = min
+			object["range"] = range
 		elif stype == 14:
-			"cloak",
+			object["type"] = "alter cloak"
 		elif stype == 15:
-			"offline",
+			object["type"] = "alter offline"
+			object["minimum"] = min
+			object["range"] = range
 		elif stype == 16:
-			"current turn rate",
+			object["type"] = "alter current turn rate"
+			object["minimum"] = min
+			object["range"] = range
 		elif stype == 17:
-			"base type",
+			object["type"] = "alter base type"
+			object["retain ammmo count"] = relative
+			object["id"] = min
 		elif stype == 18:
-			"active condition",
+			object["type"] = "alter active condition"
+			object["condition true"] = relative #find better name
+			object["minimum"] = min
+			object["range"] = range
 		elif stype == 19:
-			"occupation",
+			object["type"] = "alter occupation"
+			object["value"] = min
 		elif stype == 20:
-			"absolute cash",
+			object["type"] = "alter absolute cash"
+			object["use objects owner"] = relative
+			object["value"] = min
+			object["player"] = range
 		elif stype == 21:
-			"age",
+			object["type"] = "alter age"
+			object["relative"] = relative
+			object["minimum"] = min
+			object["range"] = range
 		elif stype == 22:
-			"absolute location",
+			object["type"] = "alter absolute location"
+			object["relative"] = relative
+			object["x"] = min
+			object["y"] = range
 	elif type == 4:
 		object["type"] = "make sparks"
 		sub = unpack(">ii i B 11x", values[8])
@@ -158,10 +187,10 @@ def parse(file, id = None):
 		pass
 	elif type == 16:
 		object["type"] = "color flash"
-		sub = unpack("> i BB", values[8])
+		sub = unpack("> i BB 18x", values[8])
 		object["duration"] = sub[0]
 		object["color"] = sub[1]
-		object["shade"] = shade[2]
+		object["shade"] = sub[2]
 	elif type == 17:
 		pass
 	elif type == 18:
