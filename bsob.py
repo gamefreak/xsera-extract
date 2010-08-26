@@ -53,7 +53,10 @@ format = ">Iiii ii iiI ii ii iii ii i hhiBx ii iii iii 6i6i6i iii i 12i 32s II i
 
 def parse(file, id = None):
 	data = file.read(length)
-	values = struct.unpack(format, data)
+	try:
+		values = struct.unpack(format, data)
+	except:
+		return None
 
 	object = {}
 
@@ -178,13 +181,13 @@ def parse(file, id = None):
 			"shape range": frame[7],
 			}
 	elif object["attributes"]["is beam"] == True:
-		frame = struct.unpack(">BBii", values[65])
+		frame = struct.unpack(">BBii 22x", values[65])
 		object
 		if frame[1] == 0:
 			object["beam"] = {
 				"hex": 0x0, #000
 				"type": "kinetic",
-				"mode": Null,
+				"mode": None,
 				}
 		elif frame[1] == 1:
 			object["beam"] = {

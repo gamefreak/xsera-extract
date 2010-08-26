@@ -19,7 +19,10 @@ format = "> iiii 2i i 4i 12i 3i I"
 
 def parse(file, id):
 	data = file.read(size)
-	values = unpack(format, data)
+	try:
+		values = unpack(format, data)
+	except:
+		return None
 	
 	object = {}
 	object["type"] = values[0]

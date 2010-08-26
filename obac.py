@@ -8,7 +8,10 @@ format = ">b ? IIhihh 4x 24s"
 
 def parse(file, id = None):
 	data = file.read(size)
-	values = unpack(format, data)
+	try:
+		values = unpack(format, data)
+	except:
+		return None
 	
 	object = {}
 	object["reflexive"] = values[1]
@@ -201,15 +204,15 @@ def parse(file, id = None):
 		object["type"] = "nil target"
 	elif type == 19:
 		object["type"] = "disable keys"
-		sub = unpack("> I 18x", values[8])
+		sub = unpack("> I 20x", values[8])
 		object["key mask"] = sub[0]
 	elif type == 20:
 		object["type"] = "enable keys"
-		sub = unpack("> I 18x", values[8])
+		sub = unpack("> I 20x", values[8])
 		object["key mask"] = sub[0]
 	elif type == 21:
 		object["type"] = "set zoom level"
-		sub = unpack("> i 18x", values[8])
+		sub = unpack("> i 20x", values[8])
 		object["value"] = sub[0]
 	elif type == 22:
 		object["type"] = "computer select"
@@ -218,6 +221,6 @@ def parse(file, id = None):
 		object["line"] = sub[1]
 	elif type == 23:
 		object["type"] = "assume initial object"
-		sub = unpack("> i 18x", values[8])
+		sub = unpack("> i 20x", values[8])
 		object["id"] = sub[0]
 	return object

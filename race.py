@@ -9,7 +9,10 @@ format = ">iB x Ii"
 
 def parse(file, id = None):
 	data = file.read(length)
-	values = unpack(format, data)
+	try:
+		values = unpack(format, data)
+	except:
+		return None
 	
 	object = {}
 	

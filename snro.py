@@ -10,7 +10,10 @@ format = "> hh 4h4xih2x 4h4xih2x 4h4xih2x 4h4xih2x 11h bb 4h ihh"
 
 def parse(file, id = None):
 	data = file.read(size)
-	values = unpack(format, data)
+	try:
+		values = unpack(format, data)
+	except:
+		return None
 	object = {}
 	
 	object["net race flags"] = values[0]
@@ -34,7 +37,8 @@ def parse(file, id = None):
 		player["net race flags"] = values[2+6*i+5]
 		object["players"][i+1] = player
 	
-	object["score string"] = strings.get(values[26], True)
+	if values[26] > 0:
+		object["score string"] = strings.get(values[26], True)
 	object["initial objects"] = {
 			"first": values[27],
 			"count": values[29],
@@ -70,7 +74,7 @@ def parse(file, id = None):
 			}
 
 	if values[40] > -1:
-		object["movie"] = strings.get(4500, values[40]-1)
+		object["movie"] = strings.get(4500, values[40])
 	else:
 		object["movie"] = None
 

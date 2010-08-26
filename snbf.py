@@ -10,7 +10,10 @@ format = "> b x 8s 2i 3h"
 
 def parse(file, id):
 	data = file.read(length)
-	values = unpack(format, data)
+	try:
+		values = unpack(format, data)
+	except:
+		return None
 
 	object = {}
 	
@@ -33,5 +36,5 @@ def parse(file, id):
 		}
 
 	object["title"] = strings.get(values[4], values[5]-1)
-	object["content"] = strings.get(values[6])
+	object["content"] = values[6]
 	return object
