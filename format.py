@@ -15,7 +15,7 @@ def object(obj, level = 0):
 		if type(key) == str:
 			key = "".join(key.title().split(" "))
 			key = key[0].lower() + key[1:]
-			print "\t" * level + '["' + key + '"] =',
+			print "\t" * level + key + ' =',
 		else:
 			print "\t" * level + '[' + str(key) + '] =',
 		if type(val) == dict:
