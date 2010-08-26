@@ -11,15 +11,25 @@ import snit
 
 import format
 
-#file = open("./data/500.bsob", "rb")
-#file = open("./data/500.race", "rb")
-#file = open("./data/500.snbf", "rb")
-#file = open("./data/500.snro", "rb")
-#file = open("./data/500.obac", "rb")
-file = open("./data/500.snit", "rb")
-if len(argv) > 1:
-	count = int(argv[1])
-else:
-	count = 1
-for id in range(0, count):
-	format.object(snit.parse(file,id))
+types = {
+		"bsob": bsob,
+		"obac": obac,
+		"snro": snro,
+		"snbf": snbf,
+		"snit": snit,
+		"race": race,
+		}
+
+data = {}
+
+for ext, func in types.items():
+	file = open("./data/500." + ext, "rb")
+	data[ext] = {}
+	obj = func.parse(file,0)
+	ctr = 0
+	while obj != None:
+		data[ext][ctr] = obj
+		ctr = ctr + 1
+		obj = func.parse(file, ctr)
+	file.close()
+format.object(data)
