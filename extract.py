@@ -11,24 +11,24 @@ import snit
 
 import format
 
-types = {
-		"bsob": bsob,
-		"obac": obac,
-		"snro": snro,
-		"snbf": snbf,
-		"snit": snit,
-		"race": race,
-		}
+types = [
+		("bsob", bsob, "objects"),
+		("obac", obac, "actions"),
+		("snro", snro, "scenarios"),
+		("snbf", snbf, "briefings"),
+		("snit", snit, "initials"),
+		("race", race, "race"),
+		]
 
 data = {}
 
-for ext, func in types.items():
+for ext, func, name in types:
 	file = open("./data/500." + ext, "rb")
-	data[ext] = {}
+	data[name] = {}
 	obj = func.parse(file,0)
 	ctr = 0
 	while obj != None:
-		data[ext][ctr] = obj
+		data[name][ctr] = obj
 		ctr = ctr + 1
 		obj = func.parse(file, ctr)
 	file.close()
