@@ -228,7 +228,7 @@ def parse(file, id = None):
 			"inverse speed": frame[5],
 			"restock cost": frame[6],
 			}
-	object["build flage"] = decode.bitfield(values[66], buildFlags)
+	object["build flags"] = decode.bitfield(values[66], buildFlags)
 	object["order flags"] = decode.bitfield(values[67], orderFlags)
 	
 	object["build ratio"] = decode.fixed(values[68])
