@@ -23,7 +23,10 @@ def get(file, id = None):
 	elif id is True:
 		return db[str(file)]
 	else:
-		return db[str(file)][id]
+		try:
+			return db[str(file)][id]
+		except:
+			return ""
 
 for fileName in glob("./data/STR#/r.*"):
 	num = fileName.split('.')[-1]
