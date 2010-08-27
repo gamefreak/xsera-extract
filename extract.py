@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/python -B
 
 from sys import	argv
 
@@ -8,6 +8,7 @@ import race
 import snbf
 import snro
 import snit
+import sprite
 
 import format
 
@@ -32,4 +33,5 @@ for ext, func, name in types:
 		ctr = ctr + 1
 		obj = func.parse(file, ctr)
 	file.close()
+data = sprite.generateList()
 format.object(data)
