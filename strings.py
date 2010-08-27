@@ -8,7 +8,7 @@ db = {}
 def readStrings(fromFile):
 	strings = {}
 	count = unpack(">h", fromFile.read(2))[0]
-	for i in range(1, count):
+	for i in range(0, count-1):
 		len = unpack("B", fromFile.read(1))[0]
 		s = unpack(str(len) + "s", fromFile.read(len))[0]
 		strings[i] = s.replace("\\", "\\\\").replace("\"", "\\\"").replace("\r", "\\r")
