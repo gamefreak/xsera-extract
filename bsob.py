@@ -213,10 +213,9 @@ def parse(file, id = None):
 				"type": "bolt",
 				"mode": "relative",
 				}
-
-			object["beam"]["color"] = frame[0]
-			object["beam"]["accuracy"] = frame[2]
-			object["beam"]["range"] = frame[3]
+		object["beam"]["color"] = frame[0]
+		object["beam"]["accuracy"] = frame[2]
+		object["beam"]["range"] = frame[3]
 	else: #device
 		frame = struct.unpack(">Iiiiiii 4x", values[65])
 		object["device"] = {
