@@ -18,8 +18,8 @@ def parse(file, id = None):
 	base = unpack(">3i", values[1])
 	tags = {
 			"point": {
-				"x": base[1],
-				"y": base[0]
+				"x": base[0],
+				"y": base[1]
 				},
 			"counter": {
 				"player": base[0],
@@ -62,4 +62,41 @@ def parse(file, id = None):
 		object["type"] = "is auxiliary"
 	elif type == 11:
 		object["type"] = "is target"
+	elif type == 12:
+		object["type"] = "counter greater"
+		object["counter"] = tags["counter"]
+	elif type == 13:
+		object["type"] = "counter not"
+		object["counter"] = tags["counter"]
+	elif type == 14:
+		object["type"] = "distance greater"
+		object["value"] = tags["unsigned"]
+	elif type == 15:
+		object["type"] = "velocity less than or equal"
+		object["value"] = tags["signed"]
+	elif type == 16:
+		object["type"] = "no ships left"
+		object["player"] = tags["signed"]
+	elif type == 17:
+		object["type"] = "current message"
+		object["id"] = tags["point"]["x"]
+		object["page"] = tags["point"]["y"]
+	elif type == 18:
+		object["type"] = "current computer selection"
+		object["screen"] = tags["point"]["x"]
+		object["line"] = tags["point"]["y"]
+	elif type == 19:
+		object["type"] = "zoom level"
+		object["value"] = tags["signed"]
+	elif type == 20:
+		object["type"] = "autopilot"
+	elif type == 21:
+		object["type"] = "not autopilot"
+	elif type == 22:
+		object["type"] = "object being built"
+	elif type == 23:
+		object["type"] = "direct is subject target"
+	elif type == 24:
+		object["type"] = "subject is player"
+
 	return object
