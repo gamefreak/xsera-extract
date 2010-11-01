@@ -3,6 +3,7 @@
 import struct
 import decode
 import strings
+import math
 
 attributes = [
 "can turn", "can be engaged", "has direction goal", "is remote",
@@ -215,7 +216,7 @@ def parse(file, id = None):
 				}
 		object["beam"]["color"] = frame[0]
 		object["beam"]["accuracy"] = frame[2]
-		object["beam"]["range"] = frame[3]
+		object["beam"]["range"] = math.sqrt(frame[3])
 	else: #device
 		frame = struct.unpack(">Iiiiiii 4x", values[65])
 		object["device"] = {
