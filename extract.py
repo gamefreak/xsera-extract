@@ -6,6 +6,7 @@ import bsob
 import obac
 import race
 import snbf
+import sncd
 import snro
 import snit
 import sprite
@@ -15,6 +16,7 @@ import format
 types = [
 		("bsob", bsob, "objects"),
 		("obac", obac, "actions"),
+		("sncd", sncd, "conditions"),
 		("snro", snro, "scenarios"),
 		("snbf", snbf, "briefings"),
 		("snit", snit, "initials"),

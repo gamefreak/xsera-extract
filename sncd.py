@@ -5,6 +5,17 @@ import math
 
 size = 38
 
+flags = [
+		"true only once", "initially true", "has been true", "",
+		"", "", "", "",
+		"", "", "", "",
+		"", "", "", "",
+		"", "", "", "",
+		"", "", "", "",
+		"", "", "", "",
+		"", "", "", ""
+		]
+
 format = "> Bx 12s iiiiIi"
 
 def parse(file, id = None):
@@ -98,5 +109,10 @@ def parse(file, id = None):
 		object["type"] = "direct is subject target"
 	elif type == 24:
 		object["type"] = "subject is player"
-
+	object["subject"] = values[2]
+	object["direct"] = values[3]
+	object["start"] = values[4]
+	object["count"] = values[5]
+	object["flags"] = decode.bitfield(values[6], flags)
+#	object["direction"] = values[7] #UNUSED?
 	return object
