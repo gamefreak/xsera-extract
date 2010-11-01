@@ -33,5 +33,6 @@ for ext, func, name in types:
 		ctr = ctr + 1
 		obj = func.parse(file, ctr)
 	file.close()
-data["sprites"] = sprite.generateList()
+data["sprites"] = dict(sprite.generateList())
+print "data =",
 format.object(data)

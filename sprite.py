@@ -6,6 +6,6 @@ def generateList():
 	for item in os.listdir("."):
 		if item != ".DS_Store":
 			pair = item.split(" ",1)
-			data[pair[0]] = pair[1]
+			data[int(pair[0])] = pair[1]
 	os.chdir("../..")
 	return data

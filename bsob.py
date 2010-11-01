@@ -211,7 +211,7 @@ def parse(file, id = None):
 			object["beam"] = {
 				"hex": 0x5, #101
 				"type": "bolt",
-				"mode": "relatice",
+				"mode": "relative",
 				}
 
 			object["beam"]["color"] = frame[0]
