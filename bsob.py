@@ -73,8 +73,8 @@ def parse(file, id = None):
 	object["warp speed"] = decode.fixed(values[7])
 	object["warp out distance"] = values[8]
 
-	object["inital velocity"] = decode.fixed(values[9])
-	object["inital velocity range"] = decode.fixed(values[10])
+	object["initial velocity"] = decode.fixed(values[9])
+	object["initial velocity range"] = decode.fixed(values[10])
 
 	object["mass"] = decode.fixed(values[11])
 	object["thrust"] = decode.fixed(values[12])
