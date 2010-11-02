@@ -76,7 +76,10 @@ def parse(file, id = None):
 	object["initial velocity"] = decode.fixed(values[9])
 	object["initial velocity range"] = decode.fixed(values[10])
 
-	object["mass"] = decode.fixed(values[11])
+	mass = decode.fixed(values[11])
+	if mass == 0:
+		mass = 1.0
+	object["mass"] = mass
 	object["thrust"] = decode.fixed(values[12])
 
 	object["health"] = values[13]
@@ -90,7 +93,16 @@ def parse(file, id = None):
 
 	object["layer"] = values[19]
 	object["sprite id"] = values[20]
-	object["icon size"] = values[21]
+	object["icon size"] = 0x0f & values[21]
+	try: 
+		object["icon shape"] = {
+				0x00: "square",
+				0x10: "triangle",
+				0x20: "diamond",
+				0x40: "framed square"
+				}[0x70 & values[21]]
+	except KeyError:
+		object["icon shape"] = None
 	object["shield color"] = values[22]
 	
 	#**** compiler alignment

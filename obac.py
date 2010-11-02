@@ -40,7 +40,7 @@ def parse(file, id = None):
 		object["distance range"] = sub[5]
 	elif type == 2:
 		object["type"] = "play sound"
-		sub = unpack(">b i?iiii 2x", values[8])
+		sub = unpack(">B i?iiii 2x", values[8])
 		object["priority"] = sub[0]
 		object["persistence"] = sub[1]
 		object["is absolute"] = sub[2]
@@ -142,7 +142,7 @@ def parse(file, id = None):
 		object["type"] = "make sparks"
 		sub = unpack(">ii i B 11x", values[8])
 		object["count"] = sub[0]
-		object["veloctiy"] = sub[1]
+		object["velocity"] = sub[1]
 		object["velocity range"] = decode.fixed(sub[2])
 		object["color"] = sub[3]
 	elif type == 5:
