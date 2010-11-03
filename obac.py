@@ -40,7 +40,7 @@ def parse(file, id = None):
 		object["distance range"] = sub[5]
 	elif type == 2:
 		object["type"] = "play sound"
-		sub = unpack(">B i?iiii 2x", values[8])
+		sub = unpack(">B x i? x iiii", values[8])
 		object["priority"] = sub[0]
 		object["persistence"] = sub[1]
 		object["is absolute"] = sub[2]
