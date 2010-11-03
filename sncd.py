@@ -34,7 +34,7 @@ def parse(file, id = None):
 				},
 			"counter": {
 				"player": base[0],
-				"counter": base[1],
+				"id": base[1],
 				"amount": base[2],
 				},
 			"signed": base[0],
