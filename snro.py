@@ -79,7 +79,7 @@ def parse(file, id = None):
 		object["movie"] = None
 
 	object["id"] = values[42]
-	object["name"] = strings.get(4600, values[42])
+	object["name"] = strings.get(4600, values[42]-1)
 
 	object["start time"] = 0x7fff & values[43]
 	object["is training"] = (0x8000 & values[43]) == True
