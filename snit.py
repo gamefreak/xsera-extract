@@ -49,7 +49,7 @@ def parse(file, id):
 	object["initial destination"] = values[23]
 	if values[24] >= 1: #and values[24] != 4400: #stupid
 		try:
-			object["foo"] = strings.db[str(values[24])][values[25]]
+			object["name override"] = strings.db[str(values[24])][values[25]]
 		except:
 			pass #I will deal with this later, only if it causes problems
 	object["attributes"] = decode.bitfield(values[26], attributes)
