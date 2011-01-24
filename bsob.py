@@ -99,6 +99,7 @@ def parse(file, id = None):
 				0x00: "square",
 				0x10: "triangle",
 				0x20: "diamond",
+				0x30: "plus",
 				0x40: "framed square"
 				}[0x70 & values[21]]
 	except KeyError:
