@@ -1,6 +1,6 @@
 def bitfield(field, table):
 	dict = {"hex": field}
-	for i in range(0,31):
+	for i in range(0,32):
 		if table[i] != "":
 			if field & 0x1 << i:
 				dict[table[i]] = True
