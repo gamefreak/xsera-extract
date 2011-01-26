@@ -39,6 +39,8 @@ def parse(file, id = None):
 	
 	if values[26] > 0:
 		object["score string"] = strings.get(values[26], True)
+	else:
+		object["score string"] = []
 	object["initial objects"] = {
 			"first": values[27],
 			"count": values[29],
