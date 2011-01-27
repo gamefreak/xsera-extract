@@ -166,7 +166,7 @@ def parse(file, id = None):
 	elif type == 9:
 		object["type"] = "change score"
 		sub = unpack("> iii 12x", values[8])
-		object["plsyer"] = sub[0]
+		object["player"] = sub[0]
 		object["score"] = sub[1]
 		object["amount"] = sub[2]
 	elif type == 10:
