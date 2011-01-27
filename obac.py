@@ -49,92 +49,93 @@ def parse(file, id = None):
 		object["sound id"] = sub[5]
 		object["sound range"] = sub[6]
 	elif type == 3:
+		object["type"] = "alter"
 		stype, relative, min, range = unpack("> B?ii 14x", values[8])
 		if stype == 0:
-			object["type"] = "alter health"
+			object["alter type"] = "health"
 			object["amount"] = min
 		elif stype == 1:
-			object["type"] = "alter velocity"
+			object["alter type"] = "velocity"
 			object["relative"] = relative
 			object["minimum"] = min
 			object["range"] = range
 		elif stype == 2:
-			object["type"] = "alter thrust"
+			object["alter type"] = "thrust"
 			object["relative"] = relative
 			object["minimum"] = min
 			object["range"] = range
 		elif stype == 3:
-			object["type"] = "alter max thrust"
+			object["alter type"] = "max thrust"
 			object["value"] = min
 		elif stype == 4:
-			object["type"] = "alter max velocity"
+			object["alter type"] = "max velocity"
 			object["value"] = min
 		elif stype == 5:
-			object["type"] = "alter max turn rate"
+			object["alter type"] = "max turn rate"
 			object["value"] = min
 		elif stype == 6:
-			object["type"] = "alter location"
+			object["alter type"] = "location"
 			object["relative"] = relative
 			object["minimum"] = min
 			object["range"] = range
 		elif stype == 7:
 #I don't think this is used in the scenario so I can't really test it
-			object["type"] = "alter scale"
+			object["alter type"] = "scale"
 			object["value"] = min
 		elif stype == 8:
-			object["type"] = "alter pulse weapon"
+			object["alter type"] = "pulse weapon"
 			object["id"] = min
 		elif stype == 9:
-			object["type"] = "alter beam weapon"
+			object["alter type"] = "beam weapon"
 			object["id"] = min
 		elif stype == 10:
-			object["type"] = "alter special weapon"
+			object["alter type"] = "special weapon"
 			object["id"] = min
 		elif stype == 11:
-			object["type"] = "alter energy"
+			object["alter type"] = "energy"
 			object["value"] = min
 		elif stype == 12:
-			object["type"] = "alter owner"
+			object["alter type"] = "owner"
 			object["use objects owner"] = relative
 			object["value"] = min
 		elif stype == 13:
-			object["type"] = "alter hidden"
+			object["alter type"] = "hidden"
 			object["minimum"] = min
 			object["range"] = range
 		elif stype == 14:
-			object["type"] = "alter cloak"
+			object["alter type"] = "cloak"
 		elif stype == 15:
-			object["type"] = "alter offline"
+			object["alter type"] = "offline"
 			object["minimum"] = min
 			object["range"] = range
 		elif stype == 16:
-			object["type"] = "alter current turn rate"
+			object["alter type"] = "current turn rate"
 			object["minimum"] = min
 			object["range"] = range
 		elif stype == 17:
-			object["type"] = "alter base type"
+			object["alter type"] = "base type"
 			object["retain ammmo count"] = relative
 			object["id"] = min
 		elif stype == 18:
-			object["type"] = "alter active condition"
+			object["alter type"] = "active condition"
 			object["condition true"] = relative #find better name
 			object["minimum"] = min
 			object["range"] = range
 		elif stype == 19:
-			object["type"] = "alter occupation"
+			object["alter type"] = "occupation"
 			object["value"] = min
 		elif stype == 20:
-			object["type"] = "alter absolute cash"
+			object["alter type"] = "absolute cash"
 			object["use objects owner"] = relative
 			object["value"] = min
 			object["player"] = range
 		elif stype == 21:
-			object["type"] = "alter age"
+			object["alter type"] = "age"
 			object["relative"] = relative
 			object["minimum"] = min
 			object["range"] = range
 		elif stype == 22:
-			object["type"] = "alter absolute location"
+			object["alter type"] = "absolute location"
 			object["relative"] = relative
 			object["x"] = min
 			object["y"] = range
