@@ -53,7 +53,7 @@ def parse(file, id = None):
 		stype, relative, min, range = unpack("> B?ii 14x", values[8])
 		if stype == 0:
 			object["alter type"] = "health"
-			object["amount"] = min
+			object["value"] = min
 		elif stype == 1:
 			object["alter type"] = "velocity"
 			object["relative"] = relative
