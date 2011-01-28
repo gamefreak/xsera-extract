@@ -134,7 +134,15 @@ def parse(file, id = None):
 			object["relative"] = relative
 			object["minimum"] = min
 			object["range"] = range
-		elif stype == 22:
+#		elif stype == 22:
+#			object["alter type"] = "attributes"
+#		elif stype == 23:
+#			object["alter type"] = "level key"
+#		elif stype == 24:
+#			object["alter type"] = "order key"
+#		elif stype == 25:
+#			object["alter type"] = "engage key"
+		elif stype == 26:
 			object["alter type"] = "absolute location"
 			object["relative"] = relative
 			object["x"] = min
