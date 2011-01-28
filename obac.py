@@ -114,7 +114,7 @@ def parse(file, id = None):
 			object["range"] = range
 		elif stype == 17:
 			object["alter type"] = "base type"
-			object["retain ammmo count"] = relative
+			object["retain ammo count"] = relative
 			object["id"] = min
 		elif stype == 18:
 			object["alter type"] = "active condition"
