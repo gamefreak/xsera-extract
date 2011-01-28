@@ -184,6 +184,8 @@ def parse(file, id = None):
 			object["how"] = "expire"
 		elif sub == 2:
 			object["how"] = "destroy"
+		elif sub == 3:
+			object["how"] = "both"
 	elif type == 12:
 		object["type"] = "set destination"
 	elif type == 13:
