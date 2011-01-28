@@ -111,8 +111,10 @@ def parse(file, id = None):
 		object["type"] = "subject is player"
 	object["subject"] = values[2]
 	object["direct"] = values[3]
-	object["start"] = values[4]
-	object["count"] = values[5]
+	object["actions"] = {
+		"start": values[4],
+		"count": values[5],
+		}
 	object["flags"] = decode.bitfield(values[6], flags)
 #	object["direction"] = values[7] #UNUSED?
 	return object
