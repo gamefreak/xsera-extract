@@ -112,7 +112,7 @@ def parse(file, id = None):
 	object["subject"] = values[2]
 	object["direct"] = values[3]
 	object["actions"] = {
-		"start": values[4],
+		"first": values[4],
 		"count": values[5],
 		}
 	object["flags"] = decode.bitfield(values[6], flags)

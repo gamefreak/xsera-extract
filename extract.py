@@ -35,6 +35,36 @@ for ext, func, name in types:
 		ctr = ctr + 1
 		obj = func.parse(file, ctr)
 	file.close()
+
+def getSequence(type, seqrange):
+	first = seqrange["first"]
+	last = seqrange["count"] + first
+	return [data[type][idx] for idx in range(first, last)]
+
+for idx in data["scenarios"]:
+	obj = data["scenarios"][idx]
+	obj["initial objects"] = getSequence("initials", obj["initial objects"])
+	obj["conditions"] = getSequence("conditions", obj["conditions"])
+	obj["briefing"] = getSequence("briefings", obj["briefing"])
+
+for idx in data["objects"]:
+	obj = data["objects"][idx]
+	for type in obj["actions"]:
+		trigger = obj["actions"][type]
+		seq = getSequence("actions", trigger)
+		del trigger["first"]
+		del trigger["count"]
+		trigger["seq"] = seq
+
+for idx in data["conditions"]:
+	obj = data["conditions"][idx]
+	obj["actions"] = getSequence("actions", obj["actions"])
+
+del data["briefings"]
+del data["initials"]
+del data["conditions"]
+del data["actions"]
+
 data["sprites"] = dict(sprite.generateList())
 data["sounds"] = {
 	500: "ShotC",
