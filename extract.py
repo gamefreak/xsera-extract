@@ -31,7 +31,10 @@ for ext, func, name in types:
 	obj = func.parse(file,0)
 	ctr = 0
 	while obj != None:
-		data[name][ctr] = obj
+		if ext == "snro":
+			data[name][obj["id"]] = obj
+		else:
+			data[name][ctr] = obj
 		ctr = ctr + 1
 		obj = func.parse(file, ctr)
 	file.close()
