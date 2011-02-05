@@ -11,7 +11,7 @@ def readStrings(fromFile):
 	for i in range(0, count-1):
 		len = unpack("B", fromFile.read(1))[0]
 		s = unpack(str(len) + "s", fromFile.read(len))[0]
-		s = s.replace("\\", "\\\\").replace("\"", "\\\"").replace("\r", "\\r")
+		s = s.replace("\\", "\\\\").replace("\"", "\\\"").replace("\r", "\\n")
 		s = s.replace("\xD5", "'")
 		strings[i] = s
 	return strings
