@@ -31,7 +31,7 @@ def parse(file, id = None):
 			player["type"] = "cpu"
 
 		player["race"] = values[2+6*i+1]
-		player["name"] = strings.get(values[2+6*i+2], values[2+6*i+3])
+		player["name"] = strings.get(values[2+6*i+2], values[2+6*i+3]- 1)
 		#player["admiral number"] = values[2+8*i+4] #unused it seems
 		player["earning power"] = decode.fixed(values[2+6*i+4])
 		player["net race flags"] = values[2+6*i+5]
