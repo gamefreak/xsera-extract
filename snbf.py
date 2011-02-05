@@ -36,5 +36,5 @@ def parse(file, id):
 		}
 
 	object["title"] = strings.get(values[4], values[5]-1)
-	object["content"] = values[6]
+	object["content"] = strings.get(values[6])
 	return object

@@ -18,10 +18,13 @@ def readStrings(fromFile):
 
 def get(file, id = None):
 	if id == None:
-		fd = open("./data/TEXT/r."+str(file))
-		text = fd.read()
-		fd.close()
-		return text
+		try:
+			fd = open("./data/TEXT/r."+str(file))
+			text = fd.read()
+			fd.close()
+		except IOError:
+			text = ""
+		return text.replace("\"", "\\\"").replace("\r", "\\n")
 	elif id is True:
 		return db[str(file)]
 	else:
