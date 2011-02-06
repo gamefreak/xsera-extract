@@ -46,8 +46,8 @@ def parse(file, id = None):
 			"count": values[29],
 			}
 	
-	object["prologue id"] = values[28],
-	object["epilogue id"] = values[32],
+	object["prologue"] = strings.get(values[28])
+	object["epilogue"] = strings.get(values[32])
 
 	object["song id"] = values[30]
 
