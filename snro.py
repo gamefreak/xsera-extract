@@ -57,8 +57,8 @@ def parse(file, id = None):
 			}
 
 	object["starmap"] = {
-			"y": values[34],
-			"x": values[36],
+			"x": values[34],
+			"y": values[36],
 			}
 
 	object["angle"] = values[37]
