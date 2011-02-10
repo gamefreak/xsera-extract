@@ -2,6 +2,7 @@
 
 from sys import	argv
 
+import nlag
 import bsob
 import obac
 import race
@@ -24,6 +25,15 @@ types = [
 		]
 
 data = {}
+
+try:
+	file = open("./data/128.nlAG", "rb")
+	obj = nlag.parse(file)
+	iter = obj.iteritems()
+	for k, v in iter:
+		data[k] = v
+except:
+	pass
 
 for ext, func, name in types:
 	file = open("./data/500." + ext, "rb")
